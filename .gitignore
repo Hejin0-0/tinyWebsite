@@ -2,6 +2,7 @@
 
 # dependencies
 /No.1_24-0404/*/node_modules
+*/node_modules
 
 /.pnp
 .pnp.js
