@@ -4,6 +4,8 @@
 /No.1_24-0404/*/node_modules
 */node_modules
 
+*/.next/
+
 /.pnp
 .pnp.js
 .yarn/install-state.gz
