@@ -1,6 +1,19 @@
-import React from "react";
+import React, { Children } from "react";
 import ItemLayout from "./ItemLayout";
 import Link from "next/link";
+
+const ItemLayout = ({ children, className }) => {
+	return (
+		<div
+			className={clsx(
+				"custom-bg p-6 sm:p-8 rounded-xl flex items-center justify-center space-y-8",
+				className
+			)}
+		>
+			{children}
+		</div>
+	);
+};
 
 const AboutDetails = () => {
 	return (
@@ -8,7 +21,7 @@ const AboutDetails = () => {
 			<div className="grid grid-cols-12 gap-4 xs:gap-6 md:gap-8 w-full">
 				<ItemLayout
 					className={
-						" col-span-full lg:col-span-8 row-span-2 flex-col items-start"
+						"col-span-full lg:col-span-8 row-span-2 flex-col items-start"
 					}
 				>
 					<h2 className="text-xl md:text-2xl text-left w-full capitalize">
