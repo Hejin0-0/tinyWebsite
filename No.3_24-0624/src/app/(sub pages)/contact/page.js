@@ -1,12 +1,19 @@
 import Image from "next/image";
 import bg from "../../../../public/background/contact-background.png";
+import Form from "@/components/contact/Form";
+
+export const metadata = {
+	title: "Contact",
+};
 
 export default function Contact() {
 	return (
 		<>
 			<Image
 				src={bg}
-				alt="background-image"
+				alt="Next.js Portfolio website's contact page background image"
+				priority
+				sizes="100vw"
 				className="-z-50 fixed top-0 left-0 w-full h-full object-cover object-center opacity-50"
 			/>
 
@@ -25,7 +32,7 @@ export default function Contact() {
 						the murmurs of magic in reply.
 					</p>
 				</div>
-				<From />
+				<Form />
 			</article>
 		</>
 	);

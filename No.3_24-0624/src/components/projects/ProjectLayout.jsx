@@ -1,4 +1,4 @@
-import React from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 
 const item = {
@@ -6,11 +6,10 @@ const item = {
 	show: { opacity: 1, y: 0 },
 };
 
-const NavLink = motion(Link);
-
-const ProjectLayout = ({ name, description, data, demoLink }) => {
+const ProjectLink = motion(Link);
+const ProjectLayout = ({ name, description, date, demoLink }) => {
 	return (
-		<NavLink
+		<ProjectLink
 			variants={item}
 			href={demoLink}
 			target={"_blank"}
@@ -26,7 +25,7 @@ const ProjectLayout = ({ name, description, data, demoLink }) => {
 			<p className="text-muted sm:text-foreground">
 				{new Date(date).toDateString()}
 			</p>
-		</NavLink>
+		</ProjectLink>
 	);
 };
 

@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 
 const createFirefly = () => ({
@@ -27,11 +28,11 @@ const FireFliesBackground = () => {
 
 	return (
 		<div className="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden">
-			{fireflies.map((fireflies) => {
+			{fireflies.map((firefly) => {
 				return (
 					<div
 						key={firefly.id}
-						className="absolute rounded-full w-[10px] h-[10px] bg-firefly-radial"
+						className="absolute roudned-full w-[10px] h-[10px] bg-firefly-radial"
 						style={{
 							top: firefly.top,
 							left: firefly.left,

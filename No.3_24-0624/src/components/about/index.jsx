@@ -1,4 +1,6 @@
-import React, { Children } from "react";
+import React from "react";
+import ItemLayout from "./ItemLayout";
+import Link from "next/link";
 
 const AboutDetails = () => {
 	return (
@@ -31,7 +33,7 @@ const AboutDetails = () => {
 					}
 				>
 					<p className="font-semibold w-full text-left text-2xl sm:text-5xl">
-						25+{" "}
+						2+{" "}
 						<sub className="font-semibold text-base">clients</sub>
 					</p>
 				</ItemLayout>
@@ -54,7 +56,7 @@ const AboutDetails = () => {
 				>
 					<img
 						className="w-full h-auto"
-						src={`${process.env.NEXT_PUBLIC_GITHUB_STATS_URL}/api/top-langs?username=hejin0-0&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false`}
+						src="https://github-readme-stats.vercel.app/api/top-langs?username=hejin0-0&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false"
 						alt="Hejin0-0"
 						loading="lazy"
 					/>
@@ -63,7 +65,7 @@ const AboutDetails = () => {
 				<ItemLayout className={"col-span-full md:col-span-8 !p-0"}>
 					<img
 						className="w-full h-auto"
-						src={`${process.env.NEXT_PUBLIC_GITHUB_STATS_URL}/api?username=hejin0-0&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false`}
+						src="https://github-readme-stats.vercel.app/api?username=hejin0-0&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false"
 						alt="Hejin0-0"
 						loading="lazy"
 					/>
@@ -81,7 +83,7 @@ const AboutDetails = () => {
 				<ItemLayout className={"col-span-full md:col-span-6 !p-0"}>
 					<img
 						className="w-full h-auto"
-						src={`${process.env.NEXT_PUBLIC_GITHUB_STREAK_STATS_URL}?user=hejin0-0&theme=dark&hide_border=true&type=svg&background=EB545400&ring=FEFE5B&currStreakLabel=FEFE5B`}
+						src="https://github-readme-streak-stats.herokuapp.com?user=hejin0-0&theme=dark&hide_border=true&type=png&background=EB545400&ring=FEFE5B&currStreakLabel=FEFE5B"
 						alt="Hejin0-0"
 						loading="lazy"
 					/>
@@ -95,7 +97,7 @@ const AboutDetails = () => {
 					>
 						<img
 							className="w-full h-auto"
-							src={`${process.env.NEXT_PUBLIC_GITHUB_STATS_URL}/api/pin/?username=hejin0-0&repo=tinyGame&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false&description_lines_count=2`}
+							src="https://github-readme-stats.vercel.app/api/pin/?username=hejin0-0&repo=tinyGame&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bole=false"
 							alt="Hejin0-0"
 							loading="lazy"
 						/>

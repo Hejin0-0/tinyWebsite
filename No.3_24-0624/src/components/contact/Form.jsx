@@ -71,8 +71,8 @@ export default function Form() {
 			reply_to: data.email,
 			message: data.message,
 		};
+		sendEmail(templateParams);
 	};
-	sendEmail(templateParams);
 
 	return (
 		<>
