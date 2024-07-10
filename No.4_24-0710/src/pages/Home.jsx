@@ -3,6 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import Loader from "../components/Loader";
 
 import Island from "../models/Island";
+import { Sky } from "@react-three/drei";
 
 {
 	/* <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
@@ -49,6 +50,8 @@ const Home = () => {
 						groundColor="#000000"
 						intensity={1}
 					/>
+
+					<Sky />
 
 					<Island
 						position={islandPosition}
