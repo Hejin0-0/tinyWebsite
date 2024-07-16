@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
 	const formRef = useRef(null);
@@ -12,6 +13,32 @@ const Contact = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setIsLoading(true);
+
+		emailjs
+			.send(
+				import.meta.env.NEXT_PUBLIC_SERVICE_ID,
+				import.meta.env.NEXT_PUBLIC_TEMPLATE_ID,
+				{
+					from_name: form.name,
+					to_name: "Hejin",
+					from_email: form.email,
+					to_email: "Hejin0-0@google.com",
+					message: form.message,
+				},
+				import.meta.env.NEXT_PUBLIC_PUBLIC_KEY
+			)
+			.then(() => {
+				setIsLoading(false);
+				// TODO: Show success message
+				// TODO: Hide an alert
+
+				setForm({ name: "", email: "", message: "" });
+			})
+			.catch((error) => {
+				setIsLoading(false);
+				console.log(error);
+				// TODO: Show error message
+			});
 	};
 	const handleFocus = () => {};
 	const handleBlur = () => {};
