@@ -4,6 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { Fox } from "../models/Fox";
 import { Loader } from "@react-three/drei";
 import useAlert from "../hooks/useAlert";
+import Alert from "../components/Alert";
 
 const Contact = () => {
 	const formRef = useRef(null);
@@ -69,8 +70,7 @@ const Contact = () => {
 
 	return (
 		<section className="relative flex lg:flex-row flex-col max-container">
-			{alert.show && <Alert {...alert} />}
-
+			{alert.show && <Alert {...alert} />} <Alert {...alert} />
 			<div className="flex-1 min-w-[50%] flex flex-col">
 				<h1 className="head-text">Get in Touch</h1>
 
@@ -131,7 +131,6 @@ const Contact = () => {
 					</button>
 				</from>
 			</div>
-
 			<div className="lg:2-1/2 w-full lg:h-auto md:h-[550px] h-[350px]">
 				<Canvas
 					camera={{
