@@ -1,9 +1,12 @@
 import { createTRPCRouter } from '../init';
-import { messageRouter } from '@/modules/messages/server/procedures';
+
+import { messagesRouter } from '@/modules/messages/server/procedures';
+import { projectsRouter } from '@/modules/projects/server/procedures';
 
 // Define the app router with TRPC
 export const appRouter = createTRPCRouter({
-  message: messageRouter
+  messages: messagesRouter,
+  projects: projectsRouter,
 });
 // export type definition of API
 export type AppRouter = typeof appRouter;
