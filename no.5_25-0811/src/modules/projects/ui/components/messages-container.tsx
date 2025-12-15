@@ -15,24 +15,28 @@ interface Props {
 export const MessagesContainer = ({ projectId, activeFragment, setActiveFragment }: Props) => {
     const trpc = useTRPC()
     const bottomRef = useRef<HTMLDivElement>(null)
+    const lastAssistantMessageIdRef = useRef<string | null>(null)
 
     const { data: messages } = useSuspenseQuery(trpc.messages.getMany.queryOptions({
         projectId: projectId
     }, {
         // TODO: Temporary live message update
-        refetchInterval:5000
+        refetchInterval: 5000
     }))
 
-    // TODO: This is causing problems
-    // useEffect(() => {
-    //     const lastAssistantMessageWithFragment = messages.findLast(
-    //         (message) => message.role === "ASSISTANT" && !!message.fragment
-    //     )
+    useEffect(() => {
+        const lastAssistantMessage = messages.findLast(
+            (message) => message.role === "ASSISTANT")
 
-    //     if (lastAssistantMessageWithFragment) {
-    //         setActiveFragment(lastAssistantMessageWithFragment.fragment)
-    //     }
-    // }, [messages, setActiveFragment])
+        if (
+            lastAssistantMessage?.fragment &&
+            lastAssistantMessage.id !== lastAssistantMessageIdRef.current
+        ) {
+            setActiveFragment(lastAssistantMessage.fragment)
+            lastAssistantMessageIdRef.current = lastAssistantMessage.id
+        }
+
+    }, [messages, setActiveFragment])
 
     useEffect(() => {
         bottomRef.current?.scrollIntoView()
@@ -47,14 +51,14 @@ export const MessagesContainer = ({ projectId, activeFragment, setActiveFragment
                 <div className="pt-2 pr-1">
                     {messages.map((message) => (
                         <MessageCard
-                        key={message.id}
-                        content={message.content}
-                        role={message.role}
-                        fragment={message.fragment}
-                        createdAt={message.createdAt}
-                        isActiveFragment={activeFragment?.id === message.fragment?.id}
-                        onFragmentClick={() => {setActiveFragment(message.fragment)}}
-                        type={message.type}
+                            key={message.id}
+                            content={message.content}
+                            role={message.role}
+                            fragment={message.fragment}
+                            createdAt={message.createdAt}
+                            isActiveFragment={activeFragment?.id === message.fragment?.id}
+                            onFragmentClick={() => { setActiveFragment(message.fragment) }}
+                            type={message.type}
                         />
                     ))}
                     {isLastMessageUser && <MessageLoading />}
