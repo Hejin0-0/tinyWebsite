@@ -3,10 +3,10 @@ import { Sandbox } from "@e2b/code-interpreter"
 import { openai, createAgent, createTool, createNetwork, type Tool } from "@inngest/agent-kit"
 
 import { PROMPT } from "@/prompt";
+import { prisma } from "@/lib/db";
 
 import { inngest } from "./client";
 import { getSandbox, lastAssistantTextMessageContent } from "./utils";
-import { prisma } from "@/lib/db";
 
 
 interface AgentSate {
@@ -22,11 +22,11 @@ export const codeAgentFunction = inngest.createFunction(
     // Imagine this is a transcript step
 
     const sandboxId = await step.run(
-        "get-sandbox-id", async () => {
-          const sandbox = await Sandbox.create("vibe-nextjs-website-test")
-          return sandbox.sandboxId;
-        }
-      )
+      "get-sandbox-id", async () => {
+        const sandbox = await Sandbox.create("vibe-nextjs-website-test")
+        return sandbox.sandboxId;
+      }
+    )
 
     const codeAgent = createAgent<AgentSate>({
       name: 'code-agent',
@@ -38,16 +38,16 @@ export const codeAgentFunction = inngest.createFunction(
           temperature: 0.1,
         }
       }),
-        tools: [
-          createTool({
-            name: "terminal",
-            description: "Use the terminal to run commands",
-            parameters: z.object({ // This is the line that was causing the error
-              command: z.string(),
+      tools: [
+        createTool({
+          name: "terminal",
+          description: "Use the terminal to run commands",
+          parameters: z.object({ // This is the line that was causing the error
+            command: z.string(),
           }),
           handler: async ({ command }, { step }) => {
             return await step?.run("terminal", async () => {
-              const buffers = { stdout: "", stderr: ""};
+              const buffers = { stdout: "", stderr: "" };
 
               try {
                 const sandbox = await getSandbox(sandboxId);
@@ -60,8 +60,8 @@ export const codeAgentFunction = inngest.createFunction(
                   },
                 });
                 return result.stdout;
-                
-              } catch(e) {
+
+              } catch (e) {
                 console.error(
                   `Command failed: ${e} \nstdout: ${buffers.stdout} \nstderr: ${buffers.stderr}`
                 )
@@ -81,7 +81,9 @@ export const codeAgentFunction = inngest.createFunction(
               }),
             )
           }),
-          handler: async ({ files }, { step, network }: Tool.Options<AgentSate>
+          handler: async (
+            { files },
+            { step, network }: Tool.Options<AgentSate>
           ) => {
             const newFiles = await step?.run("createOrUpdateFiles", async () => {
               try {
@@ -92,11 +94,11 @@ export const codeAgentFunction = inngest.createFunction(
                   updateFiles[file.path] = file.content;
                 }
                 return updateFiles;
-              } catch(e) {
+              } catch (e) {
                 return "Error: " + e;
               }
             })
-          
+
             if (typeof newFiles === "object") {
               network.state.data.files = newFiles;
             }
@@ -110,7 +112,7 @@ export const codeAgentFunction = inngest.createFunction(
           }),
           handler: async ({ files }, { step }) => {
             return await step?.run("readFiles", async () => {
-              try{
+              try {
                 const sandbox = await getSandbox(sandboxId);
                 const contents = []
                 for (const file of files) {
@@ -118,7 +120,7 @@ export const codeAgentFunction = inngest.createFunction(
                   contents.push({ path: file, content });
                 }
                 return JSON.stringify(contents);
-              } catch(e) {
+              } catch (e) {
                 return "Error: " + e;
               }
             })
