@@ -19,13 +19,17 @@ const renderText = (text, className, baseWeight = 400) => {
 
 
 const setupTextHover = (container, type) => {
-    if (!container) return;
+    if (!container) return () => { };
 
     const letters = container.querySelectorAll('span');
     const { min, max, default: base } = FONT_WEIGHTS[type];
 
-    const animateLetters = (letter, weight, duration = 0.25) => {
-        return gsap.to(letter, { duration, ease: 'power2.out', fontVariationSettings: `wght ${weight}` })
+    const animateLetter = (letter, weight, duration = 0.25) => {
+        return gsap.to(letter, {
+            duration,
+            ease: 'power2.out',
+            fontVariationSettings: `wght ${weight}`
+        })
     }
 
     const handleMouseMove = (e) => {
@@ -37,11 +41,12 @@ const setupTextHover = (container, type) => {
             const distance = Math.abs(mouseX - (l - left + w / 2))
             const intensity = Math.exp(-(distance ** 2) / 20000)
 
-            animateLetters(letter, min + (max - min) * intensity)
+            animateLetter(letter, min + (max - min) * intensity)
         })
     }
 
-    const handleMouseLeave = () => letters.forEach((letter) => animateLetters(letter, base, 0.3))
+    const handleMouseLeave = () =>
+        letters.forEach((letter) => animateLetter(letter, base, 0.3))
 
     container.addEventListener('mousemove', handleMouseMove)
     container.addEventListener('mouseleave', handleMouseLeave)
