@@ -102,11 +102,11 @@ const blogPosts = [
 const techStack = [
     {
         category: "Frontend",
-        items: ["React.js", "Next.js", "TypeScript"],
+        items: ["JavaScript", "React.js", "Next.js"],
     },
     {
         category: "Mobile",
-        items: ["React Native", "Expo"],
+        items: ["React Native", "Kotlin", "Flutter"],
     },
     {
         category: "Styling",
@@ -114,11 +114,11 @@ const techStack = [
     },
     {
         category: "Backend",
-        items: ["Node.js", "Express", "NestJS", "Hono"],
+        items: ["Django", "Node.js", "Flask"],
     },
     {
         category: "Database",
-        items: ["MongoDB", "PostgreSQL"],
+        items: ["MySQL", "Cloudflare"],
     },
     {
         category: "Dev Tools",
@@ -375,7 +375,7 @@ const WORK_LOCATION = {
                     icon: "/images/plain.png",
                     kind: "file",
                     fileType: "fig",
-                    href: "https://www.googlecom",
+                    href: "https://www.google.com",
                     position: "top-60 left-5",
                 },
             ],
@@ -449,7 +449,6 @@ const RESUME_LOCATION = {
             icon: "/images/pdf.png",
             kind: "file",
             fileType: "pdf",
-            // you can add `href` if you want to open a hosted resume
             // href: "/your/resume/path.pdf",
         },
     ],
