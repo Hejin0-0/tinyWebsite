@@ -226,7 +226,7 @@ const WORK_LOCATION = {
         {
             id: 5,
             name: "Web Sketchbook",
-            icon: "/images/blog1.png",
+            icon: "/images/folder.png",
             kind: "folder",
             position: "top-10 left-5", // icon position inside Finder
             windowPosition: "top-[5vh] left-5", // optional: Finder window position
@@ -251,7 +251,7 @@ const WORK_LOCATION = {
                     icon: "/images/safari.png",
                     kind: "file",
                     fileType: "url",
-                    href: "",
+                    href: "https://github.com/Hejin0-0/Lab_WebSketch",
                     position: "top-10 right-20",
                 },
                 {
