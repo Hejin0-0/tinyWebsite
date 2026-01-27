@@ -188,11 +188,11 @@ const photosLinks = [
 const gallery = [
     {
         id: 1,
-        img: "/images/gal1.png",
+        img: "/images/gal1.jpg",
     },
     {
         id: 2,
-        img: "/images/gal2.png",
+        img: "/images/gal2.jpg",
     },
     {
         id: 3,
@@ -229,7 +229,7 @@ const WORK_LOCATION = {
             icon: "/images/folder.png",
             kind: "folder",
             position: "top-10 left-5", // icon position inside Finder
-            windowPosition: "top-[5vh] left-5", // optional: Finder window position
+            windowPosition: "top-[15vh] left-10", // optional: Finder window position
             children: [
                 {
                     id: 1,

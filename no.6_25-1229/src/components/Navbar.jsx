@@ -1,5 +1,6 @@
+import dayjs from "dayjs";
 import useWindowStore from "#store/window";
-import { navIcons, navLinks } from "../constants";
+import { navIcons, navLinks } from "#constants";
 
 const Navbar = () => {
     const { openWindow } = useWindowStore()
@@ -27,7 +28,7 @@ const Navbar = () => {
                         </li>
                     ))}
                 </ul>
-
+                <time>{dayjs().format('YYYY. MMM. D h:mm A')}</time>
             </div>
         </nav>
     )
